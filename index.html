@@ -201,20 +201,6 @@
     .connect-note p{font-size:.88rem;color:var(--text-s);line-height:1.75}
     .connect-note strong{color:var(--text)}
 
-    /* ── RESUME ───────────── */
-    .resume-box{text-align:center;max-width:580px;margin:0 auto}
-    .resume-card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2.5rem 2rem;position:relative;overflow:hidden;transition:all .3s var(--ease)}
-    .resume-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--orange));opacity:0;transition:opacity .3s}
-    .resume-card:hover{border-color:rgba(0,200,215,.25);box-shadow:0 8px 28px rgba(0,200,215,.06)}
-    .resume-card:hover::before{opacity:1}
-    .resume-icon{font-size:2.8rem;margin-bottom:1rem}
-    .resume-title{font-family:var(--fd);font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
-    .resume-desc{font-size:.88rem;color:var(--text-s);line-height:1.75;margin-bottom:1.8rem}
-    .resume-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .resume-dl{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;background:linear-gradient(120deg,var(--teal),#0097A7);color:#020D1A;border:none;border-radius:13px;font-family:var(--fb);font-size:.88rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s var(--ease);box-shadow:0 0 22px var(--glow-t)}
-    .resume-dl:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--glow-t)}
-    .resume-preview{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:13px;font-family:var(--fb);font-size:.88rem;font-weight:400;text-decoration:none;cursor:pointer;transition:all .3s var(--ease)}
-    .resume-preview:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px);box-shadow:0 6px 22px var(--glow-o)}
 
     /* ── FOOTER ───────────── */
     footer{border-top:1px solid var(--border);padding:2.2rem 2rem}
@@ -243,7 +229,6 @@
     <li><a href="#experience">Timeline</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certs">Certs</a></li>
-    <li><a href="#resume">Resume</a></li>
     <li><a href="#connect">Connect</a></li>
   </ul>
   <div class="nact">
@@ -272,7 +257,6 @@
   <a href="#experience" class="mob-link">Timeline</a>
   <a href="#skills" class="mob-link">Skills</a>
   <a href="#certs" class="mob-link">Certs</a>
-  <a href="#resume" class="mob-link">Resume</a>
   <a href="#connect" class="mob-link">Connect</a>
 </div>
 
@@ -732,32 +716,6 @@
 
 <hr class="dv">
 
-<!-- ══════════ RESUME ══════════ -->
-<div class="sec" id="resume">
-  <p class="lbl rv">Resume</p>
-  <h2 class="sh2 rv d1">Get My<br><span class="g">Resume</span></h2>
-  <p class="ssub rv d2">10+ years of experience in AI/ML, GenAI, and enterprise software — all in one page.</p>
-  <div class="resume-box rv d2">
-    <div class="resume-card">
-      <div class="resume-icon">📄</div>
-      <div class="resume-title">Raghunath Mahakud</div>
-      <div class="resume-desc">Senior Software Engineer · GenAI Engineer · LLM Architect<br>Pegasystems · Bangalore, India</div>
-      <div class="resume-actions">
-        <a href="Raghunath_Mahakud.pdf" download class="resume-dl">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF
-        </a>
-        <a href="Raghunath_Mahakud.pdf" target="_blank" rel="noopener" class="resume-preview">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          View Online
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="dv">
-
 <!-- ══════════ CONNECT ══════════ -->
 <div class="sec" id="connect">
   <p class="lbl rv">Get In Touch</p>
@@ -797,7 +755,6 @@
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#resume">Resume</a>
       <a href="https://github.com/raghu298" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
