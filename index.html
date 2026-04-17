@@ -17,39 +17,39 @@
   <title>Raghunath Mahakud — GenAI Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* ── TOKENS ── */
     :root {
-      --bg: oklch(12% 0.008 245);
-      --bg-s: oklch(15% 0.008 245);
-      --bg-card: oklch(16% 0.008 245);
-      --accent: oklch(62% 0.14 250);
-      --accent-soft: oklch(62% 0.14 250 / .08);
-      --accent-hover: oklch(68% 0.14 250);
+      --bg: oklch(13% 0.006 155);
+      --bg-s: oklch(16% 0.006 155);
+      --bg-card: oklch(17% 0.006 155);
+      --accent: oklch(65% 0.10 155);
+      --accent-soft: oklch(65% 0.10 155 / .08);
+      --accent-hover: oklch(72% 0.10 155);
       --warm: oklch(65% 0.11 55);
       --warm-soft: oklch(65% 0.11 55 / .08);
-      --text: oklch(90% 0.006 245);
-      --text-s: oklch(70% 0.008 245);
-      --text-m: oklch(52% 0.008 245);
-      --border: oklch(22% 0.006 245);
-      --fd: 'Bricolage Grotesque', sans-serif;
+      --text: oklch(90% 0.005 155);
+      --text-s: oklch(68% 0.006 155);
+      --text-m: oklch(50% 0.006 155);
+      --border: oklch(22% 0.005 155);
+      --fd: 'Figtree', sans-serif;
       --fb: 'Figtree', sans-serif;
       --ease: cubic-bezier(.4, 0, .2, 1);
     }
     [data-theme="light"] {
-      --bg: oklch(97% 0.004 245);
-      --bg-s: oklch(100% 0.002 245);
-      --bg-card: oklch(95% 0.005 245);
-      --text: oklch(18% 0.008 245);
-      --text-s: oklch(40% 0.008 245);
-      --text-m: oklch(62% 0.006 245);
-      --border: oklch(88% 0.005 245);
-      --accent-soft: oklch(62% 0.14 250 / .06);
+      --bg: oklch(97% 0.003 155);
+      --bg-s: oklch(100% 0.002 155);
+      --bg-card: oklch(95% 0.004 155);
+      --text: oklch(18% 0.006 155);
+      --text-s: oklch(40% 0.006 155);
+      --text-m: oklch(60% 0.005 155);
+      --border: oklch(88% 0.004 155);
+      --accent-soft: oklch(65% 0.10 155 / .06);
     }
-    [data-theme="light"] nav { background: oklch(97% 0.004 245 / .8) }
-    [data-theme="light"] nav.scrolled { background: oklch(97% 0.004 245 / .96) }
-    [data-theme="light"] .mob-menu { background: oklch(97% 0.004 245 / .98) }
+    [data-theme="light"] nav { background: oklch(97% 0.003 155 / .8) }
+    [data-theme="light"] nav.scrolled { background: oklch(97% 0.003 155 / .96) }
+    [data-theme="light"] .mob-menu { background: oklch(97% 0.003 155 / .98) }
 
     /* ── RESET ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box }
@@ -63,8 +63,8 @@
     .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.12s}.rv.d3{transition-delay:.18s}.rv.d4{transition-delay:.24s}
 
     /* ── NAV ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: .7rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: oklch(12% 0.008 245 / .8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: all .3s var(--ease) }
-    nav.scrolled { background: oklch(12% 0.008 245 / .96); padding: .6rem 2.5rem }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: .7rem 2.5rem; display: flex; align-items: center; justify-content: space-between; background: oklch(13% 0.006 155 / .8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: all .3s var(--ease) }
+    nav.scrolled { background: oklch(13% 0.006 155 / .96); padding: .6rem 2.5rem }
     .nlogo { font-family: var(--fd); font-weight: 800; font-size: 1.1rem; letter-spacing: -.03em; color: var(--text); text-decoration: none }
     .nlinks { display: flex; gap: 1.8rem; list-style: none }
     .nlinks a { color: var(--text-m); text-decoration: none; font-size: .8rem; font-weight: 500; letter-spacing: .01em; transition: color .2s }
@@ -77,7 +77,7 @@
     .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
     .hamburger.open span:nth-child(2){opacity:0}
     .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-    .mob-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: oklch(12% 0.008 245 / .98); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; opacity: 0; transition: opacity .3s var(--ease) }
+    .mob-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: oklch(13% 0.006 155 / .98); backdrop-filter: blur(16px); flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; opacity: 0; transition: opacity .3s var(--ease) }
     .mob-menu.open { display: flex; opacity: 1 }
     .mob-menu a { color: var(--text); font-size: 1.05rem; font-family: var(--fd); font-weight: 600; text-decoration: none; transition: color .2s }
     .mob-menu a:hover { color: var(--accent) }
@@ -88,9 +88,9 @@
     /* ── HERO ── */
     .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 6rem; max-width: 840px; margin: 0 auto }
     .hero-inner { width: 100% }
-    .hbadge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .7rem; background: var(--accent-soft); border: 1px solid oklch(62% 0.14 250 / .15); border-radius: 4px; font-size: .68rem; color: var(--accent); letter-spacing: .03em; margin-bottom: 1.8rem; font-weight: 500 }
+    .hbadge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .7rem; background: var(--accent-soft); border: 1px solid oklch(65% 0.10 155 / .15); border-radius: 4px; font-size: .68rem; color: var(--accent); letter-spacing: .03em; margin-bottom: 1.8rem; font-weight: 500 }
     .bdot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent) }
-    .hname { font-family: var(--fd); font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -.04em; margin-bottom: .8rem; color: var(--text) }
+    .hname { font-family: var(--fd); font-size: clamp(2.4rem, 7vw, 4.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: .8rem; color: var(--text) }
     .hrole { font-size: clamp(.85rem, 1.6vw, 1rem); font-weight: 400; color: var(--text-s); margin-bottom: 1.2rem; line-height: 1.7 }
     .typing-wrap { display: inline-block }
     .typing-text { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid var(--accent); font-weight: 500; color: var(--accent); animation: blink .75s step-end infinite }
@@ -165,14 +165,14 @@
     .skh { display: flex; align-items: center; gap: .45rem; margin-bottom: .8rem }
     .ski { font-family: var(--fd); font-size: .72rem; font-weight: 700; color: var(--accent); width: 28px; height: 28px; border-radius: 5px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); flex-shrink: 0 }
     .ski.so { color: var(--warm); background: var(--warm-soft) }
-    .ski.sl2 { color: oklch(62% 0.12 155); background: oklch(62% 0.12 155 / .08) }
+    .ski.sl2 { color: oklch(62% 0.10 35); background: oklch(62% 0.10 35 / .08) }
     .ski.sb { color: oklch(58% 0.1 290); background: oklch(58% 0.1 290 / .08) }
-    .ski.sg { color: var(--text-m); background: oklch(52% 0.008 245 / .08) }
+    .ski.sg { color: var(--text-m); background: oklch(50% 0.006 155 / .08) }
     .sktitle { font-family: var(--fd); font-size: .82rem; font-weight: 700 }
     .skrows { display: flex; flex-direction: column; gap: .4rem }
-    .skrow { display: flex; align-items: center; justify-content: space-between; font-size: .76rem; color: var(--text-s) }
-    .sbar { width: 60px; height: 3px; background: oklch(22% 0.006 245); border-radius: 2px; overflow: hidden }
-    .sfill { height: 100%; border-radius: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease) }
+    .skrow { font-size: .76rem; color: var(--text-s); line-height: 1.9 }
+    .sbar { display: none }
+    .sfill { display: none }
 
     /* ── CERTS ── */
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: .6rem }
@@ -187,7 +187,7 @@
     .connect-card { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); transition: border-color .2s var(--ease) }
     .connect-card:hover { border-color: var(--text-m) }
     .cc-ico { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft); color: var(--accent) }
-    .cc-ico.li { background: oklch(58% 0.1 250 / .08); color: oklch(62% 0.14 250) }
+    .cc-ico.li { background: var(--accent-soft); color: var(--accent) }
     .cc-ico.gh { background: oklch(52% 0.008 245 / .08); color: var(--text-s) }
     .cc-ico.hf { background: var(--warm-soft); color: var(--warm) }
     .cc-label { font-size: .6rem; color: var(--text-m); letter-spacing: .04em; text-transform: uppercase; font-weight: 600 }
@@ -211,9 +211,13 @@
       .nlinks{display:none}.hamburger{display:flex}
       .sec,.sec-wide{padding:3.5rem 1.25rem}
       .hero{padding:6rem 1.25rem 4rem}
+      .hname{font-size:clamp(1.8rem,8vw,2.8rem)}
+      .sh2{font-size:clamp(1.3rem,5vw,1.8rem)}
       .skgrid{grid-template-columns:1fr 1fr}
       .hctas{flex-direction:column;align-items:flex-start}
-      .stats{gap:1.4rem}
+      .stats{gap:1.2rem}
+      .stat-item{padding-left:.7rem}
+      .sn{font-size:1.3rem}
       .nact .social-btn{display:none}
       .wi-top{flex-direction:column;gap:.15rem}
     }
@@ -313,10 +317,10 @@
     <span class="tag">GenAI</span><span class="tag">LLMs</span><span class="tag">RAG Systems</span><span class="tag">Agentic AI</span><span class="tag">Multi-Agent</span><span class="tag">LangChain</span><span class="tag">FastAPI</span><span class="tag">Prompt Engineering</span><span class="tag">GPT / Qwen / DeepSeek</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kubernetes</span><span class="tag">Kafka</span><span class="tag">Docker</span><span class="tag">Elasticsearch</span>
   </div>
   <div class="stats rv d4">
-    <div class="stat-item"><div class="sn" data-count="10">0</div><div class="sl">Years in IT</div></div>
-    <div class="stat-item"><div class="sn" data-count="4">0</div><div class="sl">Years in GenAI</div></div>
-    <div class="stat-item"><div class="sn" data-count="12">0</div><div class="sl">Certifications</div></div>
-    <div class="stat-item"><div class="sn" data-count="420">0</div><div class="sl">HF Downloads</div></div>
+    <div class="stat-item"><div class="sn">10+</div><div class="sl">Years in IT</div></div>
+    <div class="stat-item"><div class="sn">4+</div><div class="sl">Years in GenAI</div></div>
+    <div class="stat-item"><div class="sn">12</div><div class="sl">Certifications</div></div>
+    <div class="stat-item"><div class="sn">420+</div><div class="sl">HF Downloads</div></div>
   </div>
 </div>
 
@@ -691,13 +695,7 @@
 const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 
-/* Skill bars */
-const sbo=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const w=e.target.dataset.w||'.8';setTimeout(()=>{e.target.style.transform=`scaleX(${w})`},100)}})},{threshold:.3});
-document.querySelectorAll('.sfill').forEach(b=>sbo.observe(b));
 
-/* Counters */
-const cto=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,target=parseInt(el.dataset.count);let frame=0;const frames=45;const inc=target/frames;const animate=()=>{frame++;const cur=Math.min(Math.round(inc*frame),target);el.textContent=target>=100?cur.toLocaleString()+'+':cur+'+';if(frame<frames)requestAnimationFrame(animate)};animate();cto.unobserve(el)}})},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>cto.observe(el));
 
 /* Typing */
 (function(){const phrases=['RAG Systems & Vector Search','NLP Pipelines at Scale','Backend Java & Spring Boot','Distributed Systems & Kafka','LLM Fine-tuning & LoRA','Multi-Agent Orchestration','Hugging Face Model Publisher'];const el=document.getElementById('typingText');let pi=0,ci=0,del=false;function tick(){const p=phrases[pi];if(!del){el.textContent=p.substring(0,ci+1);ci++;if(ci===p.length){del=true;setTimeout(tick,1600);return}}else{el.textContent=p.substring(0,ci-1);ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(tick,350);return}}setTimeout(tick,del?28:52)}setTimeout(tick,900)})();
