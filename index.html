@@ -55,6 +55,9 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box }
     html { scroll-behavior: smooth }
     body { font-family: var(--fb); background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.75; font-size: 16px }
+    .spotlight { position: fixed; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, oklch(72% 0.12 55 / .06) 0%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%,-50%); transition: opacity .3s; opacity: 0 }
+    .spotlight.on { opacity: 1 }
+    [data-theme="light"] .spotlight { background: radial-gradient(circle, oklch(72% 0.12 55 / .035) 0%, transparent 70%) }
 
     /* ── REVEAL ── */
     @keyframes blink { 50% { border-color: transparent } }
@@ -112,7 +115,6 @@
     .sec-wide { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto }
     .lbl { display: inline-block; font-size: .65rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem }
     .sh2 { font-family: var(--fd); font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: .6rem; color: var(--text) }
-    .sh2::after { content: ''; display: block; width: 32px; height: 2px; background: var(--accent); margin-top: .5rem; border-radius: 1px; opacity: .6 }
     .ssub { color: var(--text-m); font-size: .88rem; max-width: 520px; margin-bottom: 2.8rem; font-weight: 400; line-height: 1.8 }
 
     /* ── ABOUT ── */
@@ -129,8 +131,8 @@
 
     /* ── WORK ── */
     .work-list { display: flex; flex-direction: column; gap: 0 }
-    .work-item { padding: 1.4rem .6rem; border-bottom: 1px solid var(--border); transition: all .25s var(--ease); border-radius: 4px; margin: 0 -.6rem; border-left: 2px solid transparent }
-    .work-item:hover { background: var(--accent-soft); border-left-color: var(--accent); padding-left: 1rem }
+    .work-item { padding: 1.4rem .8rem; border-bottom: 1px solid var(--border); transition: all .25s var(--ease); border-radius: 6px; margin: 0 -.8rem; border-left: 2px solid transparent }
+    .work-item:hover { background: oklch(72% 0.12 55 / .03); border-left-color: var(--accent); padding-left: 1.2rem }
     .work-item:first-child { border-top: 1px solid var(--border); margin-top: 0 }
     .wi-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .3rem; flex-wrap: wrap }
     .wi-title { font-family: var(--fd); font-size: .95rem; font-weight: 700; letter-spacing: -.01em }
@@ -141,8 +143,10 @@
 
     /* ── OPEN SOURCE ── */
     .os-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .8rem }
-    .os-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.2rem; transition: all .25s var(--ease) }
-    .os-card:hover { border-color: var(--text-m); transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0% 0 0 / .15) }
+    .os-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.2rem; transition: all .25s var(--ease); position: relative; overflow: hidden }
+    .os-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, oklch(72% 0.12 55 / .3), transparent 60%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .25s }
+    .os-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0% 0 0 / .15) }
+    .os-card:hover::before { opacity: 1 }
     .os-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem }
     .os-type { font-size: .6rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .12rem .4rem; border-radius: 3px }
     .os-type.hf { background: var(--warm-soft); color: var(--warm) }
@@ -156,7 +160,7 @@
 
     /* ── TIMELINE ── */
     .tl-wrap { position: relative; padding-left: 1.2rem }
-    .tl-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border) }
+    .tl-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), var(--border) 40%, var(--border)) }
     .ti { position: relative; padding: 0 0 2.2rem 1.6rem }
     .ti::before { content: ''; position: absolute; left: -4px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px oklch(72% 0.12 55 / .35) }
     .ty { font-size: .65rem; font-weight: 600; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem }
@@ -166,8 +170,10 @@
 
     /* ── SKILLS ── */
     .skgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .8rem }
-    .skc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem; transition: all .25s var(--ease) }
-    .skc:hover { border-color: var(--text-m); transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / .12) }
+    .skc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem; transition: all .25s var(--ease); position: relative; overflow: hidden }
+    .skc::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, oklch(72% 0.12 55 / .25), transparent 60%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .25s }
+    .skc:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / .12) }
+    .skc:hover::before { opacity: 1 }
     .skh { display: flex; align-items: center; gap: .45rem; margin-bottom: .8rem }
     .ski { font-family: var(--fd); font-size: .72rem; font-weight: 700; color: var(--accent); width: 28px; height: 28px; border-radius: 5px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); flex-shrink: 0 }
     .ski.so { color: var(--warm); background: var(--warm-soft) }
@@ -190,8 +196,10 @@
 
     /* ── CONNECT ── */
     .connect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .6rem }
-    .connect-card { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); transition: all .25s var(--ease) }
-    .connect-card:hover { border-color: var(--text-m); transform: translateY(-2px); box-shadow: 0 6px 16px oklch(0% 0 0 / .12) }
+    .connect-card { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); transition: all .25s var(--ease); position: relative; overflow: hidden }
+    .connect-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, oklch(72% 0.12 55 / .25), transparent 60%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .25s }
+    .connect-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px oklch(0% 0 0 / .12) }
+    .connect-card:hover::before { opacity: 1 }
     .cc-ico { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft); color: var(--accent) }
     .cc-ico.li { background: var(--accent-soft); color: var(--accent) }
     .cc-ico.gh { background: oklch(46% 0.004 260 / .06); color: var(--text-s) }
@@ -284,7 +292,7 @@
       <span class="typing-wrap"><span class="typing-text" id="typingText"></span></span>
     </p>
     <p class="htag rv d3">
-      I build <strong>intelligent systems that decide, reason, and act</strong> — from LLM-powered autopilots and multi-agent architectures to enterprise NLP platforms processing millions of records.
+      Building <strong>production AI systems</strong> at Pegasystems. From LLM-powered autopilots and multi-agent architectures to NLP platforms at enterprise scale.
     </p>
     <div class="hctas rv d4">
       <a href="#work" class="bp">
@@ -324,7 +332,7 @@
   <div class="stats rv d4">
     <div class="stat-item"><div class="sn">10+</div><div class="sl">Years in IT</div></div>
     <div class="stat-item"><div class="sn">4+</div><div class="sl">Years in GenAI</div></div>
-    <div class="stat-item"><div class="sn">12</div><div class="sl">Certifications</div></div>
+    <div class="stat-item"><div class="sn">10</div><div class="sl">Certifications</div></div>
     <div class="stat-item"><div class="sn">420+</div><div class="sl">HF Downloads</div></div>
   </div>
 </div>
@@ -627,7 +635,7 @@
 <div class="sec-wide" id="certs">
   <p class="lbl rv">Credentials</p>
   <h2 class="sh2 rv d1">Technical certifications</h2>
-  <p class="ssub rv d2">12 verified credentials across GenAI, NLP, RAG, RL, and enterprise architecture.</p>
+  <p class="ssub rv d2">10 verified credentials across GenAI, NLP, RAG, RL, and enterprise architecture.</p>
   <div class="cert-grid">
     <div class="cert-card rv"><div class="cert-num">01</div><div><div class="cert-name">AI Evals for Everyone</div><div class="cert-org">LevelUp Labs / Apr 2026</div></div></div>
     <div class="cert-card rv d1"><div class="cert-num">02</div><div><div class="cert-name">OpenClaw Mastery for Everyone</div><div class="cert-org">LevelUp Labs / Apr 2026</div></div></div>
@@ -638,9 +646,7 @@
     <div class="cert-card rv d2"><div class="cert-num">07</div><div><div class="cert-name">NLP with Classification &amp; Vector Spaces</div><div class="cert-org">Coursera / Oct 2023</div></div></div>
     <div class="cert-card rv d1"><div class="cert-num">08</div><div><div class="cert-name">Introduction to TensorFlow for AI, ML &amp; DL</div><div class="cert-org">Coursera / Aug 2023</div></div></div>
     <div class="cert-card rv d4"><div class="cert-num">09</div><div><div class="cert-name">Generative AI with Large Language Models</div><div class="cert-org">Coursera / Jul 2023</div></div></div>
-    <div class="cert-card rv d3"><div class="cert-num">10</div><div><div class="cert-name">Introduction to Programming Using Python</div><div class="cert-org">Udemy / Jun 2023</div></div></div>
-    <div class="cert-card rv d2"><div class="cert-num">11</div><div><div class="cert-name">Generics</div><div class="cert-org">Udemy</div></div></div>
-    <div class="cert-card rv d1"><div class="cert-num">12</div><div><div class="cert-name">Certified System Architect (CSA)</div><div class="cert-org">Pegasystems / Apr 2022</div></div></div>
+    <div class="cert-card rv d3"><div class="cert-num">10</div><div><div class="cert-name">Certified System Architect (CSA)</div><div class="cert-org">Pegasystems / Apr 2022</div></div></div>
   </div>
 </div>
 
@@ -719,6 +725,9 @@ document.querySelectorAll('.mob-link').forEach(a=>{a.addEventListener('click',()
 
 /* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
+/* Mouse spotlight */
+(function(){const s=document.createElement('div');s.className='spotlight';document.body.appendChild(s);let af;function mv(e){if(af)cancelAnimationFrame(af);af=requestAnimationFrame(()=>{s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';if(!s.classList.contains('on'))s.classList.add('on')})}document.addEventListener('mousemove',mv);document.addEventListener('mouseleave',()=>s.classList.remove('on'));if(matchMedia('(pointer:coarse)').matches)s.style.display='none'})();
 </script>
 </body>
 </html>
