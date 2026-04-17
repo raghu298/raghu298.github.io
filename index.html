@@ -181,9 +181,6 @@
     .sktitle { font-family: var(--fd); font-size: .82rem; font-weight: 700 }
     .skrows { display: flex; flex-direction: column; gap: .4rem }
     .skrow { font-size: .76rem; color: var(--text-s); line-height: 1.9 }
-    .sbar { display: none }
-    .sfill { display: none }
-
     /* ── CERTS ── */
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: .6rem }
     .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: .75rem .9rem; display: flex; align-items: center; gap: .65rem; transition: all .25s var(--ease) }
@@ -238,6 +235,15 @@
       .os-grid{grid-template-columns:1fr}
       .connect-grid{grid-template-columns:1fr}
     }
+    @media(prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important }
+      .rv { opacity: 1; transform: none }
+      .spotlight { display: none }
+    }
+
+    /* ── FOCUS ── */
+    :focus { outline: none }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px }
   </style>
 </head>
 <body>
@@ -573,55 +579,55 @@
     <div class="skc rv">
       <div class="skh"><div class="ski">AI</div><div class="sktitle">Generative AI</div></div>
       <div class="skrows">
-        <div class="skrow"><span>LLM Fine-tuning</span><div class="sbar"><div class="sfill" data-w=".93"></div></div></div>
-        <div class="skrow"><span>RAG Systems</span><div class="sbar"><div class="sfill" data-w=".91"></div></div></div>
-        <div class="skrow"><span>Agentic / Multi-Agent</span><div class="sbar"><div class="sfill" data-w=".90"></div></div></div>
-        <div class="skrow"><span>Prompt Engineering</span><div class="sbar"><div class="sfill" data-w=".92"></div></div></div>
+        <div class="skrow"><span>LLM Fine-tuning</span></div>
+        <div class="skrow"><span>RAG Systems</span></div>
+        <div class="skrow"><span>Agentic / Multi-Agent</span></div>
+        <div class="skrow"><span>Prompt Engineering</span></div>
       </div>
     </div>
     <div class="skc rv d1">
       <div class="skh"><div class="ski so">FW</div><div class="sktitle">LLM Frameworks</div></div>
       <div class="skrows">
-        <div class="skrow"><span>LangChain</span><div class="sbar"><div class="sfill" data-w=".92"></div></div></div>
-        <div class="skrow"><span>FastAPI</span><div class="sbar"><div class="sfill" data-w=".90"></div></div></div>
-        <div class="skrow"><span>GPT / Qwen / DeepSeek</span><div class="sbar"><div class="sfill" data-w=".88"></div></div></div>
-        <div class="skrow"><span>FAISS / Vector DBs</span><div class="sbar"><div class="sfill" data-w=".86"></div></div></div>
+        <div class="skrow"><span>LangChain</span></div>
+        <div class="skrow"><span>FastAPI</span></div>
+        <div class="skrow"><span>GPT / Qwen / DeepSeek</span></div>
+        <div class="skrow"><span>FAISS / Vector DBs</span></div>
       </div>
     </div>
     <div class="skc rv d2">
       <div class="skh"><div class="ski sl2">NL</div><div class="sktitle">NLP</div></div>
       <div class="skrows">
-        <div class="skrow"><span>Apache UIMA / OpenNLP</span><div class="sbar"><div class="sfill" data-w=".88"></div></div></div>
-        <div class="skrow"><span>Entity Extraction</span><div class="sbar"><div class="sfill" data-w=".90"></div></div></div>
-        <div class="skrow"><span>Topic Modelling</span><div class="sbar"><div class="sfill" data-w=".87"></div></div></div>
-        <div class="skrow"><span>TensorFlow / MALLET</span><div class="sbar"><div class="sfill" data-w=".82"></div></div></div>
+        <div class="skrow"><span>Apache UIMA / OpenNLP</span></div>
+        <div class="skrow"><span>Entity Extraction</span></div>
+        <div class="skrow"><span>Topic Modelling</span></div>
+        <div class="skrow"><span>TensorFlow / MALLET</span></div>
       </div>
     </div>
     <div class="skc rv d3">
       <div class="skh"><div class="ski sb">BE</div><div class="sktitle">Backend Engineering</div></div>
       <div class="skrows">
-        <div class="skrow"><span>Java / Spring Boot</span><div class="sbar"><div class="sfill" data-w=".94"></div></div></div>
-        <div class="skrow"><span>Python</span><div class="sbar"><div class="sfill" data-w=".91"></div></div></div>
-        <div class="skrow"><span>Micronaut</span><div class="sbar"><div class="sfill" data-w=".88"></div></div></div>
-        <div class="skrow"><span>Apache Kafka</span><div class="sbar"><div class="sfill" data-w=".86"></div></div></div>
+        <div class="skrow"><span>Java / Spring Boot</span></div>
+        <div class="skrow"><span>Python</span></div>
+        <div class="skrow"><span>Micronaut</span></div>
+        <div class="skrow"><span>Apache Kafka</span></div>
       </div>
     </div>
     <div class="skc rv d4">
       <div class="skh"><div class="ski">DO</div><div class="sktitle">DevOps &amp; Cloud</div></div>
       <div class="skrows">
-        <div class="skrow"><span>Kubernetes / Helm</span><div class="sbar"><div class="sfill" data-w=".87"></div></div></div>
-        <div class="skrow"><span>Docker / OpenShift</span><div class="sbar"><div class="sfill" data-w=".89"></div></div></div>
-        <div class="skrow"><span>AWS</span><div class="sbar"><div class="sfill" data-w=".78"></div></div></div>
-        <div class="skrow"><span>Jenkins / CI/CD</span><div class="sbar"><div class="sfill" data-w=".85"></div></div></div>
+        <div class="skrow"><span>Kubernetes / Helm</span></div>
+        <div class="skrow"><span>Docker / OpenShift</span></div>
+        <div class="skrow"><span>AWS</span></div>
+        <div class="skrow"><span>Jenkins / CI/CD</span></div>
       </div>
     </div>
     <div class="skc rv d3">
       <div class="skh"><div class="ski sg">DB</div><div class="sktitle">Databases</div></div>
       <div class="skrows">
-        <div class="skrow"><span>Elasticsearch</span><div class="sbar"><div class="sfill" data-w=".91"></div></div></div>
-        <div class="skrow"><span>PostgreSQL / Oracle</span><div class="sbar"><div class="sfill" data-w=".88"></div></div></div>
-        <div class="skrow"><span>MongoDB / Cassandra</span><div class="sbar"><div class="sfill" data-w=".84"></div></div></div>
-        <div class="skrow"><span>FAISS / Vector DBs</span><div class="sbar"><div class="sfill" data-w=".86"></div></div></div>
+        <div class="skrow"><span>Elasticsearch</span></div>
+        <div class="skrow"><span>PostgreSQL / Oracle</span></div>
+        <div class="skrow"><span>MongoDB / Cassandra</span></div>
+        <div class="skrow"><span>FAISS / Vector DBs</span></div>
       </div>
     </div>
   </div>
