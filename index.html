@@ -62,7 +62,6 @@
       background-attachment: fixed;
       min-height: 100vh;
     }
-    body.menu-open { overflow: hidden; }
     a { color: var(--accent); text-decoration: none; }
     ::selection { background: var(--accent-t); color: var(--accent); }
 
@@ -109,8 +108,6 @@
     .mobile-menu a:hover { color: var(--accent); }
     .mobile-menu .resume-btn { display: inline-block; margin-top: 1.2rem; padding: .65rem 1.4rem; border-bottom: 1px solid var(--accent); }
     .mobile-menu .resume-btn::before { content: none; }
-    .overlay { position: fixed; inset: 0; background: rgba(2, 12, 27, 0.6); backdrop-filter: blur(2px); z-index: 104; opacity: 0; pointer-events: none; transition: opacity .3s; }
-    .overlay.show { opacity: 1; pointer-events: auto; }
 
     /* ═══════════ LAYOUT ═══════════ */
     main { max-width: 1150px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 5rem); }
@@ -362,7 +359,6 @@
   </div>
 </nav>
 
-<div class="overlay" id="overlay"></div>
 <aside class="mobile-menu" id="mobileMenu">
   <ul>
     <li><a href="#about">About</a></li>
@@ -839,13 +835,12 @@ addEventListener('scroll', function () {
 });
 
 /* ── Mobile menu ── */
-var ham = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu'), ov = document.getElementById('overlay');
+var ham = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu');
 function toggleMenu(open) {
   ham.classList.toggle('open', open); menu.classList.toggle('open', open);
   ham.setAttribute('aria-expanded', open);
 }
 ham.addEventListener('click', function () { toggleMenu(!menu.classList.contains('open')); });
-ov.addEventListener('click', function () { toggleMenu(false); });
 menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
 addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
 
