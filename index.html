@@ -848,6 +848,13 @@ ham.addEventListener('click', function () { toggleMenu(!menu.classList.contains(
 menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
 addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
 
+/* ── Logo: always scroll to top + set #home (works even if hash already #home) ── */
+document.querySelector('.logo').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (history.pushState) history.pushState(null, '', '#home');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 /* ── Year ── */
 document.getElementById('year').textContent = new Date().getFullYear();
 
