@@ -853,7 +853,6 @@ function toggleMenu(open) {
   ham.setAttribute('aria-expanded', open);
 }
 ham.addEventListener('click', function () { toggleMenu(!menu.classList.contains('open')); });
-menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
 addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
 
 /* ── Smooth-scroll all in-page nav links (nav + mobile menu), ghonimi-style ── */
@@ -863,7 +862,6 @@ document.querySelectorAll('nav a[href^="#"], .mobile-menu a[href^="#"]').forEach
     var target = document.querySelector(id);
     if (!target) return;
     e.preventDefault();
-    if (menu.classList.contains('open')) toggleMenu(false);
     var top = target.getBoundingClientRect().top + window.scrollY - 56;
     window.scrollTo({ top: top, behavior: 'smooth' });
     if (history.pushState) history.pushState(null, '', id);
