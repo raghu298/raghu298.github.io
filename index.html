@@ -118,7 +118,7 @@
 
     /* glass panel (exact) */
     .glass { background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all .4s var(--bounce); }
-    .glass:hover { border-color: rgba(100, 255, 218, 0.25); box-shadow: 0 10px 40px -15px rgba(2, 12, 27, 0.9); }
+    .glass:hover { border-color: rgba(100, 255, 218, 0.3); box-shadow: 0 10px 40px -10px var(--accent-glow); background: rgba(13, 22, 45, 0.8); }
 
     /* ═══════════ HERO ═══════════ */
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav-h); }
@@ -143,13 +143,14 @@
     .btn-glow:hover { box-shadow: 0 0 24px rgba(100, 255, 218, 0.25); }
     .hero-socials { display: flex; gap: 1.3rem; }
     .hero-socials a { color: var(--text-muted); transition: all .25s var(--ease); }
-    .hero-socials a:hover { color: var(--accent); transform: translateY(-3px); }
+    .hero-socials a:hover { color: var(--accent); transform: translateY(-5px) scale(1.1); filter: drop-shadow(0 0 10px var(--accent-glow)); }
     .hero-socials svg { width: 22px; height: 22px; }
 
     /* glowing circular photo */
     .photo-wrap { display: flex; justify-content: center; }
     .photo-ring { position: relative; width: clamp(230px, 30vw, 340px); aspect-ratio: 1; border-radius: 50%; }
-    .photo-ring::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); opacity: .9; z-index: 0; filter: blur(2px); }
+    .photo-ring::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent)); background-size: 200% 200%; opacity: .9; z-index: 0; filter: blur(2px); animation: rotateGlow 4s linear infinite; }
+    @keyframes rotateGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     .photo-ring::after { content: ''; position: absolute; inset: -18px; border-radius: 50%; box-shadow: 0 0 70px 6px var(--accent-glow); z-index: -1; animation: pulseGlow 3.5s ease-in-out infinite; }
     @keyframes pulseGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
     .photo-clip { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid var(--darkest); cursor: zoom-in; }
@@ -176,23 +177,24 @@
     .stat .n { font-family: var(--fmono); font-size: 1.9rem; font-weight: 600; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .stat .l { font-size: .74rem; color: var(--text-muted); margin-top: .3rem; }
 
-    /* ═══════════ EXPERIENCE (tabs) ═══════════ */
-    .exp-wrap { display: flex; gap: 2.5rem; min-height: 320px; }
-    .tab-list { display: flex; flex-direction: column; position: relative; min-width: 210px; }
-    .tab-list::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--navy-ll); }
-    .tab-btn { font-family: var(--fmono); font-size: .82rem; text-align: left; padding: .85rem 1.2rem; color: var(--text-muted); background: transparent; border: none; cursor: pointer; transition: all .2s var(--ease); white-space: nowrap; border-left: 2px solid transparent; margin-left: -2px; }
-    .tab-btn:hover { background: var(--accent-tt); color: var(--accent); }
-    .tab-btn.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-tt); }
-    .tab-panels { flex: 1; }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; animation: fade .4s var(--ease); }
-    @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    .tab-panel h3 { font-size: 1.2rem; color: var(--text-main); font-weight: 600; margin-bottom: .2rem; }
-    .tab-panel h3 .at { color: var(--accent); }
-    .tab-panel .date { font-family: var(--fmono); font-size: .78rem; color: var(--text-muted); margin-bottom: 1.1rem; }
-    .tab-panel ul { list-style: none; }
-    .tab-panel li { position: relative; padding-left: 1.6rem; margin-bottom: .8rem; color: var(--text-muted); font-size: .95rem; }
-    .tab-panel li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+    /* ═══════════ EXPERIENCE (timeline) ═══════════ */
+    .tl-sub { font-family: var(--fmono); font-size: .85rem; color: var(--accent); margin-bottom: 1.8rem; letter-spacing: .03em; }
+    .timeline { position: relative; padding-left: 2.2rem; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--navy-ll) 30%, var(--navy-ll)); }
+    .tl-item { position: relative; padding-bottom: 2.4rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -2.2rem; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.12); animation: pulse-ring 2.5s infinite; }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.6); } 70% { box-shadow: 0 0 0 10px rgba(100, 255, 218, 0); } 100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); } }
+    .tl-card { border-radius: 12px; padding: 1.4rem 1.6rem; }
+    .tl-card:hover { transform: translateX(4px); }
+    .tl-date { font-family: var(--fmono); font-size: .74rem; color: var(--accent); margin-bottom: .4rem; letter-spacing: .02em; }
+    .tl-card h3 { font-size: 1.15rem; color: var(--text-main); font-weight: 600; margin-bottom: .15rem; }
+    .tl-card h3 .at { color: var(--accent); }
+    .tl-company { font-size: .82rem; color: var(--text-muted); margin-bottom: .9rem; }
+    .tl-card ul { list-style: none; }
+    .tl-card li { position: relative; padding-left: 1.5rem; margin-bottom: .55rem; color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
+    .tl-card li:last-child { margin-bottom: 0; }
+    .tl-card li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
 
     /* ═══════════ PROJECTS ═══════════ */
     .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
@@ -223,7 +225,7 @@
     .sk-card h3 { font-size: 1rem; color: var(--text-main); font-weight: 600; }
     .sk-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
     .skill-tag { font-family: var(--fmono); font-size: .72rem; padding: .35rem .7rem; border-radius: 6px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); color: var(--accent); transition: all .3s ease; }
-    .skill-tag:hover { background: rgba(100, 255, 218, 0.12); transform: translateY(-2px); }
+    .skill-tag:hover { background: rgba(100, 255, 218, 0.15); transform: translateY(-3px) scale(1.05); box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15); }
 
     /* ═══════════ CERTS (image grid + lightbox) ═══════════ */
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
@@ -279,7 +281,7 @@
     footer { text-align: center; padding: 2.5rem 1rem; font-family: var(--fmono); }
     footer .fsoc { display: flex; gap: 1.6rem; justify-content: center; margin-bottom: 1.3rem; }
     footer .fsoc a { color: var(--text-muted); transition: all .2s; }
-    footer .fsoc a:hover { color: var(--accent); transform: translateY(-2px); }
+    footer .fsoc a:hover { color: var(--accent); transform: translateY(-4px) scale(1.1); filter: drop-shadow(0 0 8px var(--accent-glow)); }
     footer .fsoc svg { width: 22px; height: 22px; }
     footer p { font-size: .78rem; color: var(--text-muted); }
     footer a { color: var(--slate-l); }
@@ -288,18 +290,12 @@
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .photo-wrap { order: -1; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 720px) {
       .nlinks, .nav-right .resume-btn { display: none; }
       .hamburger { display: block; }
-      .exp-wrap { flex-direction: column; gap: 1rem; }
-      .tab-list { flex-direction: row; overflow-x: auto; min-width: 0; -webkit-overflow-scrolling: touch; }
-      .tab-list::before { top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 2px; }
-      .tab-btn { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
-      .tab-btn.active { border-left: none; border-bottom-color: var(--accent); }
       section { padding: 70px 0; }
       .heading { flex-wrap: wrap; }
       .heading h2 { white-space: normal; }
@@ -436,58 +432,86 @@
 
   <!-- ═══════════ EXPERIENCE ═══════════ -->
   <section id="experience">
-    <div class="heading reveal"><span class="num">02.</span><h2>Where I've Worked</h2></div>
-    <div class="exp-wrap reveal d1">
-      <div class="tab-list" role="tablist">
-        <button class="tab-btn active" data-tab="0" role="tab">Pegasystems</button>
-        <button class="tab-btn" data-tab="1" role="tab">Ericsson</button>
-        <button class="tab-btn" data-tab="2" role="tab">Mercedes-Benz</button>
-        <button class="tab-btn" data-tab="3" role="tab">CrimsonLogic</button>
-        <button class="tab-btn" data-tab="4" role="tab">BITS Pilani</button>
-      </div>
-      <div class="tab-panels">
-        <div class="tab-panel active" role="tabpanel">
+    <div class="heading reveal"><span class="num">02.</span><h2>Experience &amp; Education</h2></div>
+    <p class="tl-sub reveal d1">// Professional Experience</p>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">March 2022 – Present · Bangalore</div>
           <h3>Senior Software Engineer <span class="at">@ Pegasystems</span></h3>
-          <p class="date">March 2022 – Present · Bangalore</p>
+          <div class="tl-company">Decisioning &amp; AI</div>
           <ul>
             <li>Lead GenAI engineering for the Pega Autopilot AI assistant — LLM-driven task orchestration with fine-tuned models and a multi-step planner agent.</li>
             <li>Built production NLP pipelines and LLM function-calling infrastructure for enterprise decisioning.</li>
             <li>Stack: Python, FastAPI, LangChain, Java, Micronaut, Agentic &amp; Multi-Agent systems.</li>
           </ul>
         </div>
-        <div class="tab-panel" role="tabpanel">
+      </div>
+      <div class="tl-item reveal d1">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">January 2020 – March 2022 · Bangalore</div>
           <h3>Senior Software Developer <span class="at">@ Ericsson</span></h3>
-          <p class="date">January 2020 – March 2022 · Bangalore</p>
+          <div class="tl-company">Client: SoftBank</div>
           <ul>
             <li>Built IoT Device Management for SoftBank — a geo-redundant platform handling OTA firmware upgrades, diagnostics, and monitoring at scale.</li>
             <li>Designed geo-redundant architecture with Kubernetes deployments and ELK monitoring.</li>
             <li>Stack: Spring Batch, Cassandra, Kubernetes, ELK.</li>
           </ul>
         </div>
-        <div class="tab-panel" role="tabpanel">
+      </div>
+      <div class="tl-item reveal d2">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">November 2017 – December 2019 · Bangalore</div>
           <h3>Senior Consultant <span class="at">@ Mercedes-Benz R&amp;D</span></h3>
-          <p class="date">November 2017 – December 2019 · Bangalore</p>
+          <div class="tl-company">Client: Daimler</div>
           <ul>
             <li>Led microservices migration for the DuKe automotive testing platform serving all Mercedes-Benz car testing globally.</li>
             <li>Architected an event-driven Kafka pipeline with Elasticsearch analytics.</li>
             <li>Stack: Kafka, Elasticsearch, Docker, OpenShift, Kubernetes.</li>
           </ul>
         </div>
-        <div class="tab-panel" role="tabpanel">
+      </div>
+      <div class="tl-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">September 2015 – October 2017 · Bangalore</div>
           <h3>Senior Software Engineer <span class="at">@ CrimsonLogic</span></h3>
-          <p class="date">September 2015 – October 2017 · Bangalore</p>
+          <div class="tl-company">Government &amp; eCommerce</div>
           <ul>
             <li>Built e-Government services (IREMBO) for the Government of Rwanda — a multi-service portal with cross-department integration.</li>
             <li>Developed Inferlytics, an NLP-powered eCommerce product discovery engine.</li>
             <li>Stack: Apache Camel, Spring Boot, PostgreSQL, Elasticsearch, NLP.</li>
           </ul>
         </div>
-        <div class="tab-panel" role="tabpanel">
+      </div>
+    </div>
+
+    <p class="tl-sub reveal d1" style="margin-top:2.6rem;">// Education</p>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">2025 – Present · Expected 2027</div>
           <h3>M.Tech — AI &amp; Machine Learning <span class="at">@ BITS Pilani (WILP)</span></h3>
-          <p class="date">2025 – Present · Expected 2027</p>
+          <div class="tl-company">Work Integrated Learning Programme</div>
           <ul>
             <li>Advanced AI/ML coursework, deepening the theory behind the systems I build every day.</li>
             <li>Focus areas: deep learning, model architectures, and the mathematics driving modern GenAI.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item reveal d1">
+        <span class="timeline-dot"></span>
+        <div class="tl-card glass">
+          <div class="tl-date">March 2026 – July 2026</div>
+          <h3>Global Consumer Intelligence (GCI) <span class="at">@ The University of Tokyo</span></h3>
+          <div class="tl-company">Matsuo–Iwasawa Lab</div>
+          <ul>
+            <li>Completed the GCI program focused on AI, Machine Learning, Data Science, and data-driven marketing strategy.</li>
+            <li>Hands-on with Python for data analysis, modeling, and consumer-intelligence applications on real-world business problems.</li>
           </ul>
         </div>
       </div>
@@ -798,17 +822,6 @@ addEventListener('scroll', function () {
   var cur = '';
   secs.forEach(function (s) { if (y >= s.offsetTop - 150) cur = s.id; });
   links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
-});
-
-/* ── Experience tabs ── */
-var tabs = document.querySelectorAll('.tab-btn'), panels = document.querySelectorAll('.tab-panel');
-tabs.forEach(function (t) {
-  t.addEventListener('click', function () {
-    var i = +t.dataset.tab;
-    tabs.forEach(function (x) { x.classList.remove('active'); });
-    panels.forEach(function (x) { x.classList.remove('active'); });
-    t.classList.add('active'); panels[i].classList.add('active');
-  });
 });
 
 /* ── Mobile menu ── */
