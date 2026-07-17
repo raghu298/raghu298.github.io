@@ -152,7 +152,9 @@
     .photo-ring::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); opacity: .9; z-index: 0; filter: blur(2px); }
     .photo-ring::after { content: ''; position: absolute; inset: -18px; border-radius: 50%; box-shadow: 0 0 70px 6px var(--accent-glow); z-index: -1; animation: pulseGlow 3.5s ease-in-out infinite; }
     @keyframes pulseGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-    .photo-ring img, .photo-fallback { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; border: 3px solid var(--darkest); }
+    .photo-clip { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid var(--darkest); cursor: zoom-in; }
+    .photo-clip img, .photo-fallback { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s var(--ease); }
+    .photo-ring:hover .photo-clip img { transform: scale(1.1); }
     .photo-fallback { display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy-l), var(--navy-ll)); font-family: var(--fmono); font-weight: 600; font-size: clamp(3rem, 8vw, 5rem); color: var(--accent); }
 
     /* ═══════════ ABOUT ═══════════ */
@@ -387,8 +389,10 @@
       </div>
       <div class="photo-wrap reveal in d3">
         <div class="photo-ring">
-          <img src="my_photo.jpeg" alt="Raghunath Mahakud" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="photo-fallback">RM</div>
+          <div class="photo-clip">
+            <img src="my_photo.jpeg" alt="Raghunath Mahakud" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="photo-fallback">RM</div>
+          </div>
         </div>
       </div>
     </div>
@@ -818,6 +822,12 @@ ham.addEventListener('click', function () { toggleMenu(!menu.classList.contains(
 ov.addEventListener('click', function () { toggleMenu(false); });
 menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
 addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
+
+/* ── Logo → smooth scroll to very top (like ghonimi "AG.") ── */
+document.querySelector('.logo').addEventListener('click', function (e) {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 /* ── Year ── */
 document.getElementById('year').textContent = new Date().getFullYear();
