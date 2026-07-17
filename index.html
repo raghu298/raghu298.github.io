@@ -836,7 +836,7 @@ document.querySelectorAll('.reveal:not(.in)').forEach(function (el) { ro.observe
 
 /* ── Nav hide-on-scroll + active link ── */
 var nav = document.getElementById('nav'), last = 0;
-var links = document.querySelectorAll('.nlinks a'), secs = document.querySelectorAll('main section');
+var links = document.querySelectorAll('.nlinks a, .mobile-menu a[href^="#"]'), secs = document.querySelectorAll('main section');
 addEventListener('scroll', function () {
   var y = scrollY;
   nav.classList.toggle('scrolled', y > 50);
