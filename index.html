@@ -103,7 +103,7 @@
     @keyframes menuDrop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
     .mobile-menu ul { list-style: none; }
     .mobile-menu li { counter-increment: mitem 1; }
-    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: .95rem; display: block; padding: .95rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: .95rem; display: block; padding: .95rem 0; }
     .mobile-menu a::before { content: "0" counter(mitem) ". "; color: var(--accent); font-size: .8rem; }
     .mobile-menu a:hover { color: var(--accent); }
     .mobile-menu .resume-btn { display: inline-block; margin-top: 1.2rem; padding: .65rem 1.4rem; border-bottom: 1px solid var(--accent); }
@@ -133,7 +133,8 @@
     .hero-content { min-width: 0; max-width: 100%; }
     .hero-roles, .hero p.lead, .hero h1 { overflow-wrap: break-word; }
     .hero-intro { font-family: var(--fmono); color: var(--accent); font-size: clamp(.85rem, 2vw, 1.05rem); margin-bottom: 1.4rem; letter-spacing: .02em; }
-    .hero-intro .cursor { display: inline-block; width: 9px; height: 1.1em; background: var(--accent); margin-left: 2px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+    .hero-intro .cursor { display: inline-block; width: 2px; height: 1.05em; background: var(--accent); margin-left: 3px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+    .hero-intro .cursor.done { display: none; }
     @keyframes blink { 50% { opacity: 0; } }
     .hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; line-height: 1.02; letter-spacing: -.03em; margin-bottom: 1.2rem; }
     .hero h1 .fn { color: var(--text-main); display: block; }
@@ -816,7 +817,7 @@
 (function () {
   var el = document.getElementById('initSeq'); if (!el) return;
   var full = 'Initializing sequence ... Hello, my name is', i = 0;
-  (function type() { if (i <= full.length) { el.textContent = full.substring(0, i); i++; setTimeout(type, 40); } })();
+  (function type() { if (i <= full.length) { el.textContent = full.substring(0, i); i++; setTimeout(type, 40); } else { setTimeout(function () { var c = document.querySelector('.hero-intro .cursor'); if (c) c.classList.add('done'); }, 1500); } })();
 })();
 
 /* ── Scroll reveal ── */
