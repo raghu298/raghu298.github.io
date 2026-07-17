@@ -99,19 +99,22 @@
     .hamburger.open span:nth-child(1) { top: 10px; transform: rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
-    .mobile-menu { position: fixed; top: 0; right: 0; bottom: 0; width: min(78vw, 340px); background: var(--navy-l); box-shadow: -10px 0 30px -15px rgba(2, 12, 27, 0.7); z-index: 105; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem; transform: translateX(100%); transition: transform .3s var(--ease); counter-reset: mitem; }
-    .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 1.6rem; text-align: center; }
+    .mobile-menu { position: fixed; top: 0; left: 0; right: 0; z-index: 99; background: rgba(10, 25, 47, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--navy-ll); padding: calc(var(--nav-h) + .4rem) 1.6rem 1.4rem; display: none; counter-reset: mitem; box-shadow: 0 20px 40px -20px rgba(2, 12, 27, 0.9); }
+    .mobile-menu.open { display: block; animation: menuDrop .25s var(--ease); }
+    @keyframes menuDrop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+    .mobile-menu ul { list-style: none; }
     .mobile-menu li { counter-increment: mitem 1; }
-    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: 1.05rem; }
-    .mobile-menu a::before { content: "0" counter(mitem) ". "; color: var(--accent); font-size: .82rem; }
+    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: .95rem; display: block; padding: .95rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    .mobile-menu a::before { content: "0" counter(mitem) ". "; color: var(--accent); font-size: .8rem; }
     .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .resume-btn { display: inline-block; margin-top: 1.2rem; padding: .65rem 1.4rem; border-bottom: 1px solid var(--accent); }
+    .mobile-menu .resume-btn::before { content: none; }
     .overlay { position: fixed; inset: 0; background: rgba(2, 12, 27, 0.6); backdrop-filter: blur(2px); z-index: 104; opacity: 0; pointer-events: none; transition: opacity .3s; }
     .overlay.show { opacity: 1; pointer-events: auto; }
 
     /* ═══════════ LAYOUT ═══════════ */
     main { max-width: 1150px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 5rem); }
-    section { padding: 90px 0; }
+    section { padding: 96px 0; }
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
     .reveal.in { opacity: 1; transform: none; }
     .reveal.d1 { transition-delay: .1s; } .reveal.d2 { transition-delay: .2s; }
@@ -598,10 +601,26 @@
       <div class="proj-card glass reveal d2">
         <span class="os-badge gh">GH</span>
         <div class="proj-top"><div class="proj-folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div></div>
-        <h3>applied-ai-lab</h3>
-        <p class="os-meta">Repo · Jupyter · Active</p>
-        <p class="pd">Hands-on AI/ML lab — conversational AI (Threat Analyzer, Stock Dashboard), LLM experiments, NLP apps, and cloud-native web projects.</p>
-        <div class="proj-links"><a href="https://github.com/raghu298/applied-ai-lab" target="_blank" rel="noopener" aria-label="View on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div>
+        <h3>nanoclaw-mini</h3>
+        <p class="os-meta">applied-ai-lab · LLM</p>
+        <p class="pd">A minimal Claude-style AI agent built from scratch — agent loop, tool use, and LLM orchestration in a nano footprint.</p>
+        <div class="proj-links"><a href="https://github.com/raghu298/applied-ai-lab/tree/main/large-language-models/nanoclaw-mini" target="_blank" rel="noopener" aria-label="View on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div>
+      </div>
+      <div class="proj-card glass reveal">
+        <span class="os-badge gh">GH</span>
+        <div class="proj-top"><div class="proj-folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div></div>
+        <h3>churn_pipeline</h3>
+        <p class="os-meta">applied-ai-lab · MLOps</p>
+        <p class="pd">End-to-end customer-churn ML pipeline — data prep, training, artifacts, and one-command service scripts.</p>
+        <div class="proj-links"><a href="https://github.com/raghu298/applied-ai-lab/tree/main/cloud-native-web/churn_pipeline" target="_blank" rel="noopener" aria-label="View on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div>
+      </div>
+      <div class="proj-card glass reveal d1">
+        <span class="os-badge gh">GH</span>
+        <div class="proj-top"><div class="proj-folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div></div>
+        <h3>threat_indicator_analyzer</h3>
+        <p class="os-meta">applied-ai-lab · Conversational AI</p>
+        <p class="pd">LLM-powered conversational app for analyzing security threat indicators.</p>
+        <div class="proj-links"><a href="https://github.com/raghu298/applied-ai-lab/tree/main/conversational-ai/threat_indicator_analyzer" target="_blank" rel="noopener" aria-label="View on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a></div>
       </div>
       <div class="proj-card glass reveal">
         <span class="os-badge gh">GH</span>
@@ -823,19 +842,12 @@ addEventListener('scroll', function () {
 var ham = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu'), ov = document.getElementById('overlay');
 function toggleMenu(open) {
   ham.classList.toggle('open', open); menu.classList.toggle('open', open);
-  ov.classList.toggle('show', open); document.body.classList.toggle('menu-open', open);
   ham.setAttribute('aria-expanded', open);
 }
 ham.addEventListener('click', function () { toggleMenu(!menu.classList.contains('open')); });
 ov.addEventListener('click', function () { toggleMenu(false); });
 menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
 addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
-
-/* ── Logo → smooth scroll to very top (like ghonimi "AG.") ── */
-document.querySelector('.logo').addEventListener('click', function (e) {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
 
 /* ── Year ── */
 document.getElementById('year').textContent = new Date().getFullYear();
