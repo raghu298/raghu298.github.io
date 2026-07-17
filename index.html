@@ -103,7 +103,7 @@
     @keyframes menuDrop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
     .mobile-menu ul { list-style: none; }
     .mobile-menu li { counter-increment: mitem 1; }
-    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: .95rem; display: block; padding: .95rem 0; position: relative; width: fit-content; }
+    .mobile-menu a { font-family: var(--fmono); color: var(--text-main); font-size: .95rem; display: block; padding: .95rem 0; position: relative; }
     .mobile-menu a::after { content: ''; position: absolute; left: 0; bottom: .55rem; height: 2px; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s ease; }
     .mobile-menu a:hover::after, .mobile-menu a:active::after, .mobile-menu a.active::after { width: 100%; }
     .mobile-menu a::before { content: "0" counter(mitem) ". "; color: var(--accent); font-size: .8rem; }
@@ -836,7 +836,6 @@ var links = document.querySelectorAll('.nlinks a'), secs = document.querySelecto
 addEventListener('scroll', function () {
   var y = scrollY;
   nav.classList.toggle('scrolled', y > 50);
-  if (y > last && y > 200) nav.classList.add('hide'); else nav.classList.remove('hide');
   last = y;
   var cur = '';
   secs.forEach(function (s) { if (y >= s.offsetTop - 150) cur = s.id; });
