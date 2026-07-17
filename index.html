@@ -123,6 +123,9 @@
     /* ═══════════ HERO ═══════════ */
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav-h); }
     .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; width: 100%; }
+    .hero-grid > * { min-width: 0; }
+    .hero-content { min-width: 0; max-width: 100%; }
+    .hero-roles, .hero p.lead, .hero h1 { overflow-wrap: break-word; }
     .hero-intro { font-family: var(--fmono); color: var(--accent); font-size: clamp(.85rem, 2vw, 1.05rem); margin-bottom: 1.4rem; letter-spacing: .02em; }
     .hero-intro .cursor { display: inline-block; width: 9px; height: 1.1em; background: var(--accent); margin-left: 2px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
@@ -220,13 +223,46 @@
     .skill-tag { font-family: var(--fmono); font-size: .72rem; padding: .35rem .7rem; border-radius: 6px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); color: var(--accent); transition: all .3s ease; }
     .skill-tag:hover { background: rgba(100, 255, 218, 0.12); transform: translateY(-2px); }
 
-    /* ═══════════ CERTS ═══════════ */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-    .cert-card { border-radius: 10px; padding: 1.1rem 1.3rem; display: flex; gap: 1rem; align-items: flex-start; }
-    .cert-card:hover { transform: translateY(-3px); }
-    .cert-num { font-family: var(--fmono); font-size: .85rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; flex-shrink: 0; }
-    .cert-name { font-size: .9rem; color: var(--text-main); font-weight: 500; line-height: 1.4; }
-    .cert-org { font-family: var(--fmono); font-size: .68rem; color: var(--text-muted); margin-top: .25rem; }
+    /* ═══════════ CERTS (image grid + lightbox) ═══════════ */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
+    .cert-item { border-radius: 12px; overflow: hidden; cursor: zoom-in; display: flex; flex-direction: column; }
+    .cert-item:hover { transform: translateY(-6px); }
+    .cert-thumb { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: #0d162d; }
+    .cert-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform .5s var(--ease); }
+    .cert-item:hover .cert-thumb img { transform: scale(1.05); }
+    .cert-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,13,25,.55), transparent 45%); opacity: 0; transition: opacity .3s; }
+    .cert-item:hover .cert-thumb::after { opacity: 1; }
+    .cert-zoom { position: absolute; top: .7rem; right: .7rem; width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: rgba(7,13,25,.7); color: var(--accent); opacity: 0; transform: scale(.8); transition: all .25s var(--ease); backdrop-filter: blur(4px); }
+    .cert-item:hover .cert-zoom { opacity: 1; transform: scale(1); }
+    .cert-zoom svg { width: 15px; height: 15px; }
+    .cert-cap { padding: .9rem 1.1rem; }
+    .cert-cap .cn { font-size: .88rem; color: var(--text-main); font-weight: 600; line-height: 1.35; }
+    .cert-cap .co { font-family: var(--fmono); font-size: .68rem; color: var(--accent); margin-top: .35rem; }
+    /* additional credentials (no image) */
+    .cert-more { margin-top: 2.2rem; }
+    .cert-more h3 { font-family: var(--fmono); font-size: .82rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: .03em; }
+    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .7rem; }
+    .cert-row { border-radius: 9px; padding: .85rem 1.1rem; display: flex; align-items: flex-start; gap: .8rem; }
+    .cert-row:hover { transform: translateY(-2px); }
+    .cert-row .dot { color: var(--accent); font-size: .8rem; margin-top: 2px; }
+    .cert-row .cn { font-size: .84rem; color: var(--text-main); font-weight: 500; line-height: 1.35; }
+    .cert-row .co { font-family: var(--fmono); font-size: .66rem; color: var(--text-muted); margin-top: .2rem; }
+    .cert-row a.verify { font-family: var(--fmono); font-size: .64rem; color: var(--accent); margin-top: .3rem; display: inline-block; }
+    .cert-row a.verify:hover { text-decoration: underline; }
+
+    /* lightbox */
+    .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(2,8,20,.92); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 4vh 4vw; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); }
+    .lightbox.open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-width: 100%; max-height: 82vh; border-radius: 10px; box-shadow: 0 20px 70px -10px rgba(0,0,0,.8); border: 1px solid rgba(100,255,218,.2); transform: scale(.94); transition: transform .3s var(--ease); }
+    .lightbox.open img { transform: scale(1); }
+    .lb-cap { position: absolute; bottom: max(2vh, 1rem); left: 0; right: 0; text-align: center; font-family: var(--fmono); font-size: .82rem; color: var(--text-main); }
+    .lb-cap span { color: var(--accent); }
+    .lb-close { position: absolute; top: max(2vh, 1rem); right: max(2vw, 1rem); width: 44px; height: 44px; border-radius: 10px; border: 1px solid rgba(255,255,255,.15); background: rgba(7,13,25,.7); color: var(--text-main); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .lb-close:hover { color: var(--accent); border-color: var(--accent); }
+    .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); background: rgba(7,13,25,.7); color: var(--text-main); font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .lb-nav:hover { color: var(--accent); border-color: var(--accent); }
+    .lb-nav.prev { left: max(1.5vw, .6rem); } .lb-nav.next { right: max(1.5vw, .6rem); }
+    @media (max-width: 600px) { .lb-nav { width: 38px; height: 38px; } }
 
     /* ═══════════ CONTACT ═══════════ */
     .contact { text-align: center; max-width: 640px; margin: 0 auto; }
@@ -258,11 +294,33 @@
       .nlinks, .nav-right .resume-btn { display: none; }
       .hamburger { display: block; }
       .exp-wrap { flex-direction: column; gap: 1rem; }
-      .tab-list { flex-direction: row; overflow-x: auto; min-width: 0; }
+      .tab-list { flex-direction: row; overflow-x: auto; min-width: 0; -webkit-overflow-scrolling: touch; }
       .tab-list::before { top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 2px; }
       .tab-btn { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
       .tab-btn.active { border-left: none; border-bottom-color: var(--accent); }
       section { padding: 70px 0; }
+      .heading { flex-wrap: wrap; }
+      .heading h2 { white-space: normal; }
+      .heading::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hero-intro { font-size: .68rem; white-space: normal; word-break: break-word; line-height: 1.5; }
+      .hero-intro .cursor { height: 1em; }
+      .hero-roles { font-size: 1.2rem; line-height: 1.3; word-wrap: break-word; }
+      .hero h1 { font-size: clamp(2.2rem, 11vw, 3rem); }
+      .hero p.lead { font-size: .95rem; word-wrap: break-word; }
+      .hero-actions { gap: 1.1rem; }
+      .btn-glow { padding: .85rem 1.3rem; font-size: .85rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-list { grid-template-columns: 1fr; }
+      .sk-grid, .proj-grid { grid-template-columns: 1fr; }
+      .contact-links { gap: .6rem; }
+      main { padding: 0 1.25rem; }
+    }
+    @media (max-width: 380px) {
+      .hero-roles { font-size: 1.05rem; }
+      .logo { font-size: 1.45rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
@@ -359,6 +417,7 @@
         <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Focus:</b> GenAI, LLMs &amp; Agentic AI</div></div>
         <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><b>Location:</b> Bangalore, India</div></div>
         <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><div><b>Degree:</b> M.Tech AI &amp; ML — BITS Pilani (WILP)</div></div>
+        <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><div><b>Program:</b> GCI — The University of Tokyo (Matsuo–Iwasawa Lab)</div></div>
         <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg><div><b>Role:</b> Senior Software Engineer @ Pegasystems</div></div>
         <div class="id-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div><b>Open to:</b> GenAI consulting &amp; LLM architecture</div></div>
       </div>
@@ -582,17 +641,29 @@
   <!-- ═══════════ CERTS ═══════════ -->
   <section id="certs">
     <div class="heading reveal"><span class="num">05.</span><h2>Certifications</h2></div>
+    <p class="ssub reveal d1" style="color:var(--text-muted);font-size:.9rem;margin:-1.6rem 0 2rem;max-width:560px;">15 verified credentials across GenAI, LLMs, RAG, RL, NLP, and enterprise architecture. Click any certificate to view it full-size.</p>
     <div class="cert-grid">
-      <div class="cert-card glass reveal"><span class="cert-num">01</span><div><div class="cert-name">AI Evals for Everyone</div><div class="cert-org">LevelUp Labs · Apr 2026</div></div></div>
-      <div class="cert-card glass reveal d1"><span class="cert-num">02</span><div><div class="cert-name">OpenClaw Mastery for Everyone</div><div class="cert-org">LevelUp Labs · Apr 2026</div></div></div>
-      <div class="cert-card glass reveal d2"><span class="cert-num">03</span><div><div class="cert-name">Reinforcement Learning for LLMs</div><div class="cert-org">The RAG Pack · Mar 2026</div></div></div>
-      <div class="cert-card glass reveal"><span class="cert-num">04</span><div><div class="cert-name">Building Your First AI Agent Using N8N</div><div class="cert-org">AnalytixLabs · Apr 2025</div></div></div>
-      <div class="cert-card glass reveal d1"><span class="cert-num">05</span><div><div class="cert-name">Modern AI Pro (Practitioner)</div><div class="cert-org">Mitra Robot · Nov 2024</div></div></div>
-      <div class="cert-card glass reveal d2"><span class="cert-num">06</span><div><div class="cert-name">Modern AI Pro (Essentials)</div><div class="cert-org">Mitra Robot · Oct 2024</div></div></div>
-      <div class="cert-card glass reveal"><span class="cert-num">07</span><div><div class="cert-name">NLP with Classification &amp; Vector Spaces</div><div class="cert-org">Coursera · Oct 2023</div></div></div>
-      <div class="cert-card glass reveal d1"><span class="cert-num">08</span><div><div class="cert-name">Intro to TensorFlow for AI, ML &amp; DL</div><div class="cert-org">Coursera · Aug 2023</div></div></div>
-      <div class="cert-card glass reveal d2"><span class="cert-num">09</span><div><div class="cert-name">Generative AI with Large Language Models</div><div class="cert-org">Coursera · Jul 2023</div></div></div>
-      <div class="cert-card glass reveal"><span class="cert-num">10</span><div><div class="cert-name">Certified System Architect (CSA)</div><div class="cert-org">Pegasystems · Apr 2022</div></div></div>
+      <figure class="cert-item glass reveal" data-cert="0"><div class="cert-thumb"><img src="certs/01-modern-ai-pro-multi-agent.jpg" alt="Multi-Agent Systems — Modern AI Pro" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Multi-Agent Systems</div><div class="co">Modern AI Pro · May 2026</div></figcaption></figure>
+      <figure class="cert-item glass reveal d1" data-cert="1"><div class="cert-thumb"><img src="certs/02-ai-evals.jpg" alt="AI Evals for Everyone — LevelUp Labs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">AI Evals for Everyone</div><div class="co">LevelUp Labs · Apr 2026</div></figcaption></figure>
+      <figure class="cert-item glass reveal d2" data-cert="2"><div class="cert-thumb"><img src="certs/03-rl-for-llms.jpg" alt="Reinforcement Learning for LLMs — The RAG Pack" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Reinforcement Learning for LLMs</div><div class="co">The RAG Pack · Mar 2026</div></figcaption></figure>
+      <figure class="cert-item glass reveal" data-cert="3"><div class="cert-thumb"><img src="certs/04-agentic-ai-n8n.jpg" alt="Building Agentic AI Workflows with N8N — AnalytixLabs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Building Agentic AI Workflows (N8N)</div><div class="co">AnalytixLabs · Apr 2025</div></figcaption></figure>
+      <figure class="cert-item glass reveal d1" data-cert="4"><div class="cert-thumb"><img src="certs/05-modern-ai-pro-practitioner.jpg" alt="Modern AI Pro Practitioner — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Practitioner)</div><div class="co">Mitra Robot · Nov 2024</div></figcaption></figure>
+      <figure class="cert-item glass reveal d2" data-cert="5"><div class="cert-thumb"><img src="certs/06-modern-ai-pro-essentials.jpg" alt="Modern AI Pro Essentials — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Essentials)</div><div class="co">Mitra Robot · Oct 2024</div></figcaption></figure>
+      <figure class="cert-item glass reveal" data-cert="6"><div class="cert-thumb"><img src="certs/07-udemy-python.jpg" alt="Complete Python Developer — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Complete Python Developer</div><div class="co">Udemy · Jun 2023</div></figcaption></figure>
+      <figure class="cert-item glass reveal d1" data-cert="7"><div class="cert-thumb"><img src="certs/08-udemy-generics.jpg" alt="Generics — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Generics (Java)</div><div class="co">Udemy · 2023</div></figcaption></figure>
+    </div>
+
+    <div class="cert-more reveal d1">
+      <h3>// Additional Credentials</h3>
+      <div class="cert-list">
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Generative AI with Large Language Models</div><div class="co">Coursera · Jul 2023</div><a class="verify" href="https://coursera.org/verify/EQMKZ565BEE7" target="_blank" rel="noopener">Verify credential →</a></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">NLP with Classification &amp; Vector Spaces</div><div class="co">Coursera · Oct 2023</div><a class="verify" href="https://coursera.org/verify/TFAZVADUNXBT" target="_blank" rel="noopener">Verify credential →</a></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Intro to TensorFlow for AI, ML &amp; DL</div><div class="co">Coursera · Aug 2023</div><a class="verify" href="https://coursera.org/verify/X3ADNL4Q97XQ" target="_blank" rel="noopener">Verify credential →</a></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">How to Build an Executive Presence</div><div class="co">Coursera · Oct 2024</div><a class="verify" href="https://coursera.org/verify/MZVEMXU85T32" target="_blank" rel="noopener">Verify credential →</a></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">OpenClaw Mastery for Everyone</div><div class="co">LevelUp Labs · Apr 2026</div></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Certified System Architect (CSA)</div><div class="co">Pegasystems · Apr 2022</div></div></div>
+        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Quality Mindset BTEB IOT</div><div class="co">Ericsson · Nov 2021</div><a class="verify" href="https://www.credly.com/badges/e76b8394-9ac6-47e4-9fee-823c38ab40eb" target="_blank" rel="noopener">Verify credential →</a></div></div>
+      </div>
     </div>
   </section>
 
@@ -625,6 +696,15 @@
   <p>Designed &amp; Built by <a href="https://github.com/raghu298" target="_blank" rel="noopener">Raghunath Mahakud</a></p>
   <p style="margin-top:.3rem;opacity:.7;">&copy; <span id="year"></span> · GenAI Engineer · Bangalore, India</p>
 </footer>
+</div>
+
+<!-- ═══════════ LIGHTBOX ═══════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
 </div>
 
 <script>
@@ -741,6 +821,58 @@ addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(fa
 
 /* ── Year ── */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── Lightbox (certificates + profile photo) ── */
+(function () {
+  var certs = [
+    { src: 'certs/01-modern-ai-pro-multi-agent.jpg', t: 'Multi-Agent Systems', o: 'Modern AI Pro · May 2026' },
+    { src: 'certs/02-ai-evals.jpg', t: 'AI Evals for Everyone', o: 'LevelUp Labs · Apr 2026' },
+    { src: 'certs/03-rl-for-llms.jpg', t: 'Reinforcement Learning for LLMs', o: 'The RAG Pack · Mar 2026' },
+    { src: 'certs/04-agentic-ai-n8n.jpg', t: 'Building Agentic AI Workflows (N8N)', o: 'AnalytixLabs · Apr 2025' },
+    { src: 'certs/05-modern-ai-pro-practitioner.jpg', t: 'Modern AI Pro (Practitioner)', o: 'Mitra Robot · Nov 2024' },
+    { src: 'certs/06-modern-ai-pro-essentials.jpg', t: 'Modern AI Pro (Essentials)', o: 'Mitra Robot · Oct 2024' },
+    { src: 'certs/07-udemy-python.jpg', t: 'Complete Python Developer', o: 'Udemy · Jun 2023' },
+    { src: 'certs/08-udemy-generics.jpg', t: 'Generics (Java)', o: 'Udemy · 2023' }
+  ];
+  var lb = document.getElementById('lightbox'), img = document.getElementById('lbImg'),
+      cap = document.getElementById('lbCap'), prev = document.getElementById('lbPrev'),
+      next = document.getElementById('lbNext'), closeBtn = document.getElementById('lbClose');
+  var idx = 0, single = false;
+  function show(i) {
+    idx = (i + certs.length) % certs.length;
+    var c = certs[idx];
+    img.src = c.src; img.alt = c.t;
+    cap.innerHTML = c.t + ' — <span>' + c.o + '</span>';
+  }
+  function open(i, isSingle) {
+    single = !!isSingle;
+    prev.style.display = next.style.display = single ? 'none' : 'flex';
+    if (single) { img.src = i.src; img.alt = i.alt; cap.innerHTML = i.cap || ''; }
+    else show(i);
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function close() { lb.classList.remove('open'); document.body.style.overflow = ''; setTimeout(function () { img.src = ''; }, 300); }
+  document.querySelectorAll('.cert-item').forEach(function (el) {
+    el.addEventListener('click', function () { open(+el.dataset.cert, false); });
+  });
+  var pRing = document.querySelector('.photo-ring img');
+  if (pRing) {
+    pRing.style.cursor = 'zoom-in';
+    pRing.addEventListener('click', function () {
+      open({ src: pRing.src, alt: 'Raghunath Mahakud', cap: 'Raghunath Mahakud — <span>GenAI Engineer</span>' }, true);
+    });
+  }
+  prev.addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+  next.addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (!single && e.key === 'ArrowLeft') show(idx - 1);
+    else if (!single && e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
 </script>
 </body>
 </html>
