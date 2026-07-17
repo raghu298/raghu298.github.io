@@ -178,7 +178,8 @@
     .stat .l { font-size: .74rem; color: var(--text-muted); margin-top: .3rem; }
 
     /* ═══════════ EXPERIENCE (timeline) ═══════════ */
-    .tl-sub { font-family: var(--fmono); font-size: .85rem; color: var(--accent); margin-bottom: 1.8rem; letter-spacing: .03em; }
+    .tl-sub { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 1.8rem; padding-bottom: .7rem; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+    .sec-intro { color: var(--text-muted); font-size: .92rem; margin: -1.4rem 0 2.2rem; max-width: 600px; line-height: 1.7; }
     .timeline { position: relative; padding-left: 2.2rem; }
     .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--navy-ll) 30%, var(--navy-ll)); }
     .tl-item { position: relative; padding-bottom: 2.4rem; }
@@ -187,10 +188,9 @@
     @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.6); } 70% { box-shadow: 0 0 0 10px rgba(100, 255, 218, 0); } 100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); } }
     .tl-card { border-radius: 12px; padding: 1.4rem 1.6rem; }
     .tl-card:hover { transform: translateX(4px); }
-    .tl-date { font-family: var(--fmono); font-size: .74rem; color: var(--accent); margin-bottom: .4rem; letter-spacing: .02em; }
-    .tl-card h3 { font-size: 1.15rem; color: var(--text-main); font-weight: 600; margin-bottom: .15rem; }
-    .tl-card h3 .at { color: var(--accent); }
-    .tl-company { font-size: .82rem; color: var(--text-muted); margin-bottom: .9rem; }
+    .tl-card h3 { font-size: 1.15rem; color: var(--text-main); font-weight: 600; margin-bottom: .2rem; }
+    .tl-co { font-size: .92rem; color: var(--accent); font-weight: 500; margin-bottom: .25rem; }
+    .tl-date { font-family: var(--fmono); font-size: .74rem; color: var(--text-muted); margin-bottom: .95rem; letter-spacing: .02em; }
     .tl-card ul { list-style: none; }
     .tl-card li { position: relative; padding-left: 1.5rem; margin-bottom: .55rem; color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
     .tl-card li:last-child { margin-bottom: 0; }
@@ -244,7 +244,7 @@
     .cert-cap .co { font-family: var(--fmono); font-size: .68rem; color: var(--accent); margin-top: .35rem; }
     /* additional credentials (no image) */
     .cert-more { margin-top: 2.2rem; }
-    .cert-more h3 { font-family: var(--fmono); font-size: .82rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: .03em; }
+    
     .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .7rem; }
     .cert-row { border-radius: 9px; padding: .85rem 1.1rem; display: flex; align-items: flex-start; gap: .8rem; }
     .cert-row:hover { transform: translateY(-2px); }
@@ -289,14 +289,19 @@
 
     /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero { min-height: auto; padding: calc(var(--nav-h) + 3.5rem) 0 3rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .photo-wrap { padding-top: .5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 720px) {
       .nlinks, .nav-right .resume-btn { display: none; }
       .hamburger { display: block; }
-      section { padding: 70px 0; }
+      section { padding: 64px 0; }
+      .timeline { padding-left: 1.7rem; }
+      .timeline-dot { left: -1.7rem; width: 12px; height: 12px; }
+      .tl-card { padding: 1.2rem 1.25rem; }
       .heading { flex-wrap: wrap; }
       .heading h2 { white-space: normal; }
       .heading::after { display: none; }
@@ -433,14 +438,14 @@
   <!-- ═══════════ EXPERIENCE ═══════════ -->
   <section id="experience">
     <div class="heading reveal"><span class="num">02.</span><h2>Experience &amp; Education</h2></div>
-    <p class="tl-sub reveal d1">// Professional Experience</p>
+    <p class="tl-sub reveal d1">Professional Experience</p>
     <div class="timeline">
       <div class="tl-item reveal">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>Senior Software Engineer</h3>
+          <div class="tl-co">Pegasystems · Decisioning &amp; AI</div>
           <div class="tl-date">March 2022 – Present · Bangalore</div>
-          <h3>Senior Software Engineer <span class="at">@ Pegasystems</span></h3>
-          <div class="tl-company">Decisioning &amp; AI</div>
           <ul>
             <li>Lead GenAI engineering for the Pega Autopilot AI assistant — LLM-driven task orchestration with fine-tuned models and a multi-step planner agent.</li>
             <li>Built production NLP pipelines and LLM function-calling infrastructure for enterprise decisioning.</li>
@@ -451,9 +456,9 @@
       <div class="tl-item reveal d1">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>Senior Software Developer</h3>
+          <div class="tl-co">Ericsson · Client: SoftBank</div>
           <div class="tl-date">January 2020 – March 2022 · Bangalore</div>
-          <h3>Senior Software Developer <span class="at">@ Ericsson</span></h3>
-          <div class="tl-company">Client: SoftBank</div>
           <ul>
             <li>Built IoT Device Management for SoftBank — a geo-redundant platform handling OTA firmware upgrades, diagnostics, and monitoring at scale.</li>
             <li>Designed geo-redundant architecture with Kubernetes deployments and ELK monitoring.</li>
@@ -464,9 +469,9 @@
       <div class="tl-item reveal d2">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>Senior Consultant</h3>
+          <div class="tl-co">Mercedes-Benz R&amp;D · Client: Daimler</div>
           <div class="tl-date">November 2017 – December 2019 · Bangalore</div>
-          <h3>Senior Consultant <span class="at">@ Mercedes-Benz R&amp;D</span></h3>
-          <div class="tl-company">Client: Daimler</div>
           <ul>
             <li>Led microservices migration for the DuKe automotive testing platform serving all Mercedes-Benz car testing globally.</li>
             <li>Architected an event-driven Kafka pipeline with Elasticsearch analytics.</li>
@@ -477,9 +482,9 @@
       <div class="tl-item reveal">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>Senior Software Engineer</h3>
+          <div class="tl-co">CrimsonLogic · Government &amp; eCommerce</div>
           <div class="tl-date">September 2015 – October 2017 · Bangalore</div>
-          <h3>Senior Software Engineer <span class="at">@ CrimsonLogic</span></h3>
-          <div class="tl-company">Government &amp; eCommerce</div>
           <ul>
             <li>Built e-Government services (IREMBO) for the Government of Rwanda — a multi-service portal with cross-department integration.</li>
             <li>Developed Inferlytics, an NLP-powered eCommerce product discovery engine.</li>
@@ -489,14 +494,14 @@
       </div>
     </div>
 
-    <p class="tl-sub reveal d1" style="margin-top:2.6rem;">// Education</p>
+    <p class="tl-sub reveal d1" style="margin-top:3rem;">Education</p>
     <div class="timeline">
       <div class="tl-item reveal">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>M.Tech — AI &amp; Machine Learning</h3>
+          <div class="tl-co">BITS Pilani (WILP)</div>
           <div class="tl-date">2025 – Present · Expected 2027</div>
-          <h3>M.Tech — AI &amp; Machine Learning <span class="at">@ BITS Pilani (WILP)</span></h3>
-          <div class="tl-company">Work Integrated Learning Programme</div>
           <ul>
             <li>Advanced AI/ML coursework, deepening the theory behind the systems I build every day.</li>
             <li>Focus areas: deep learning, model architectures, and the mathematics driving modern GenAI.</li>
@@ -506,9 +511,9 @@
       <div class="tl-item reveal d1">
         <span class="timeline-dot"></span>
         <div class="tl-card glass">
+          <h3>Global Consumer Intelligence (GCI)</h3>
+          <div class="tl-co">The University of Tokyo · Matsuo–Iwasawa Lab</div>
           <div class="tl-date">March 2026 – July 2026</div>
-          <h3>Global Consumer Intelligence (GCI) <span class="at">@ The University of Tokyo</span></h3>
-          <div class="tl-company">Matsuo–Iwasawa Lab</div>
           <ul>
             <li>Completed the GCI program focused on AI, Machine Learning, Data Science, and data-driven marketing strategy.</li>
             <li>Hands-on with Python for data analysis, modeling, and consumer-intelligence applications on real-world business problems.</li>
@@ -566,7 +571,7 @@
       </div>
     </div>
 
-    <div class="heading reveal" style="margin-top:5rem;"><span class="num" style="font-size:1rem;">03b.</span><h2 style="font-size:1.4rem;">Open Source</h2></div>
+    <p class="tl-sub reveal" style="margin-top:4.5rem;">Open Source Contributions</p>
     <div class="proj-grid">
       <div class="proj-card glass reveal">
         <span class="os-badge hf">HF</span>
@@ -669,26 +674,26 @@
   <!-- ═══════════ CERTS ═══════════ -->
   <section id="certs">
     <div class="heading reveal"><span class="num">05.</span><h2>Certifications</h2></div>
-    <p class="ssub reveal d1" style="color:var(--text-muted);font-size:.9rem;margin:-1.6rem 0 2rem;max-width:560px;">15 verified credentials across GenAI, LLMs, RAG, RL, NLP, and enterprise architecture. Click any certificate to view it full-size.</p>
+    <p class="sec-intro reveal d1">15 verified credentials across GenAI, LLMs, RAG, RL, NLP, and enterprise architecture. Click any certificate to view it full-size.</p>
     <div class="cert-grid">
       <figure class="cert-item glass reveal" data-cert="0"><div class="cert-thumb"><img src="certs/01-modern-ai-pro-multi-agent.jpg" alt="Multi-Agent Systems — Modern AI Pro" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Multi-Agent Systems</div><div class="co">Modern AI Pro · May 2026</div></figcaption></figure>
       <figure class="cert-item glass reveal d1" data-cert="1"><div class="cert-thumb"><img src="certs/02-ai-evals.jpg" alt="AI Evals for Everyone — LevelUp Labs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">AI Evals for Everyone</div><div class="co">LevelUp Labs · Apr 2026</div></figcaption></figure>
-      <figure class="cert-item glass reveal d2" data-cert="2"><div class="cert-thumb"><img src="certs/03-rl-for-llms.jpg" alt="Reinforcement Learning for LLMs — The RAG Pack" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Reinforcement Learning for LLMs</div><div class="co">The RAG Pack · Mar 2026</div></figcaption></figure>
-      <figure class="cert-item glass reveal" data-cert="3"><div class="cert-thumb"><img src="certs/04-agentic-ai-n8n.jpg" alt="Building Agentic AI Workflows with N8N — AnalytixLabs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Building Agentic AI Workflows (N8N)</div><div class="co">AnalytixLabs · Apr 2025</div></figcaption></figure>
-      <figure class="cert-item glass reveal d1" data-cert="4"><div class="cert-thumb"><img src="certs/05-modern-ai-pro-practitioner.jpg" alt="Modern AI Pro Practitioner — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Practitioner)</div><div class="co">Mitra Robot · Nov 2024</div></figcaption></figure>
-      <figure class="cert-item glass reveal d2" data-cert="5"><div class="cert-thumb"><img src="certs/06-modern-ai-pro-essentials.jpg" alt="Modern AI Pro Essentials — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Essentials)</div><div class="co">Mitra Robot · Oct 2024</div></figcaption></figure>
-      <figure class="cert-item glass reveal" data-cert="6"><div class="cert-thumb"><img src="certs/07-udemy-python.jpg" alt="Complete Python Developer — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Complete Python Developer</div><div class="co">Udemy · Jun 2023</div></figcaption></figure>
-      <figure class="cert-item glass reveal d1" data-cert="7"><div class="cert-thumb"><img src="certs/08-udemy-generics.jpg" alt="Generics — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Generics (Java)</div><div class="co">Udemy · 2023</div></figcaption></figure>
+      <figure class="cert-item glass reveal d2" data-cert="2"><div class="cert-thumb"><img src="certs/09-openclaw.jpg" alt="OpenClaw Mastery for Everyone — LevelUp Labs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">OpenClaw Mastery for Everyone</div><div class="co">LevelUp Labs · Apr 2026</div></figcaption></figure>
+      <figure class="cert-item glass reveal d2" data-cert="3"><div class="cert-thumb"><img src="certs/03-rl-for-llms.jpg" alt="Reinforcement Learning for LLMs — The RAG Pack" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Reinforcement Learning for LLMs</div><div class="co">The RAG Pack · Mar 2026</div></figcaption></figure>
+      <figure class="cert-item glass reveal" data-cert="4"><div class="cert-thumb"><img src="certs/04-agentic-ai-n8n.jpg" alt="Building Agentic AI Workflows with N8N — AnalytixLabs" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Building Agentic AI Workflows (N8N)</div><div class="co">AnalytixLabs · Apr 2025</div></figcaption></figure>
+      <figure class="cert-item glass reveal d1" data-cert="5"><div class="cert-thumb"><img src="certs/05-modern-ai-pro-practitioner.jpg" alt="Modern AI Pro Practitioner — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Practitioner)</div><div class="co">Mitra Robot · Nov 2024</div></figcaption></figure>
+      <figure class="cert-item glass reveal d2" data-cert="6"><div class="cert-thumb"><img src="certs/06-modern-ai-pro-essentials.jpg" alt="Modern AI Pro Essentials — Mitra Robot" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Modern AI Pro (Essentials)</div><div class="co">Mitra Robot · Oct 2024</div></figcaption></figure>
+      <figure class="cert-item glass reveal" data-cert="7"><div class="cert-thumb"><img src="certs/07-udemy-python.jpg" alt="Complete Python Developer — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Complete Python Developer</div><div class="co">Udemy · Jun 2023</div></figcaption></figure>
+      <figure class="cert-item glass reveal d1" data-cert="8"><div class="cert-thumb"><img src="certs/08-udemy-generics.jpg" alt="Generics — Udemy" loading="lazy"><span class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span></div><figcaption class="cert-cap"><div class="cn">Generics (Java)</div><div class="co">Udemy · 2023</div></figcaption></figure>
     </div>
 
     <div class="cert-more reveal d1">
-      <h3>// Additional Credentials</h3>
+      <h3 class="tl-sub">Additional Credentials</h3>
       <div class="cert-list">
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Generative AI with Large Language Models</div><div class="co">Coursera · Jul 2023</div><a class="verify" href="https://coursera.org/verify/EQMKZ565BEE7" target="_blank" rel="noopener">Verify credential →</a></div></div>
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">NLP with Classification &amp; Vector Spaces</div><div class="co">Coursera · Oct 2023</div><a class="verify" href="https://coursera.org/verify/TFAZVADUNXBT" target="_blank" rel="noopener">Verify credential →</a></div></div>
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Intro to TensorFlow for AI, ML &amp; DL</div><div class="co">Coursera · Aug 2023</div><a class="verify" href="https://coursera.org/verify/X3ADNL4Q97XQ" target="_blank" rel="noopener">Verify credential →</a></div></div>
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">How to Build an Executive Presence</div><div class="co">Coursera · Oct 2024</div><a class="verify" href="https://coursera.org/verify/MZVEMXU85T32" target="_blank" rel="noopener">Verify credential →</a></div></div>
-        <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">OpenClaw Mastery for Everyone</div><div class="co">LevelUp Labs · Apr 2026</div></div></div>
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Certified System Architect (CSA)</div><div class="co">Pegasystems · Apr 2022</div></div></div>
         <div class="cert-row glass"><span class="dot">▹</span><div><div class="cn">Quality Mindset BTEB IOT</div><div class="co">Ericsson · Nov 2021</div><a class="verify" href="https://www.credly.com/badges/e76b8394-9ac6-47e4-9fee-823c38ab40eb" target="_blank" rel="noopener">Verify credential →</a></div></div>
       </div>
@@ -850,6 +855,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   var certs = [
     { src: 'certs/01-modern-ai-pro-multi-agent.jpg', t: 'Multi-Agent Systems', o: 'Modern AI Pro · May 2026' },
     { src: 'certs/02-ai-evals.jpg', t: 'AI Evals for Everyone', o: 'LevelUp Labs · Apr 2026' },
+    { src: 'certs/09-openclaw.jpg', t: 'OpenClaw Mastery for Everyone', o: 'LevelUp Labs · Apr 2026' },
     { src: 'certs/03-rl-for-llms.jpg', t: 'Reinforcement Learning for LLMs', o: 'The RAG Pack · Mar 2026' },
     { src: 'certs/04-agentic-ai-n8n.jpg', t: 'Building Agentic AI Workflows (N8N)', o: 'AnalytixLabs · Apr 2025' },
     { src: 'certs/05-modern-ai-pro-practitioner.jpg', t: 'Modern AI Pro (Practitioner)', o: 'Mitra Robot · Nov 2024' },
